@@ -1,0 +1,15 @@
+<diV class="container">
+  <div class="card">
+    <div class="head">
+      <h3>City: {{ weather.name }}</h3>
+      <img [src]="imgUrl" alt="Weather Icon"/>
+    </div>
+    <div class="body">
+      <p>Summary: {{ weather.weather[0].main }}</p>
+      <p>Temperature: {{ weather.main.temp }}°C</p>
+      <p>Feels Like: {{ weather.main.feels_like }}°C</p>
+      <p>Pressure: {{ weather.main.pressure }}hPa</p>
+      <p>Humidity: {{ weather.main.humidity }}%</p>
+    </div>
+  </div>
+</diV>
