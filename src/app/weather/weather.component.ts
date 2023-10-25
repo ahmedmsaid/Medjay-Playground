@@ -11,6 +11,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
   weather: any = ''
   imgUrl: string = ''
+  pageLoaded: boolean = false;
 
   constructor(private weatherService: WeatherAPIService){}
 
@@ -23,7 +24,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
       },
       error: (err: any) => console.log(err.message)
       ,
-      complete: () => console.log('API Called Successfully')
+      complete: () => {
+        console.log('API Called Successfully')
+        this.pageLoaded = true;
+      }
     }
     let weatherSub = this.weatherService.getWeather().subscribe(observer);
     this.subs.push(weatherSub);
