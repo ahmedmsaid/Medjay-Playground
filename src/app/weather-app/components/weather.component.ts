@@ -9,13 +9,18 @@ import { Subscription } from 'rxjs';
 })
 export class WeatherComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
-  weather: any = ''
-  imgUrl: string = ''
+  weather: any = '';
+  imgUrl: string = '';
+  units: string = 'imperial'
   pageLoaded: boolean = false;
 
   constructor(private weatherService: WeatherAPIService){}
 
   ngOnInit(): void {
+    this.getWeather();
+  }
+
+  getWeather() {
     let observer = {
       next: (res: any) => {
         this.weather = res;
@@ -29,8 +34,17 @@ export class WeatherComponent implements OnInit, OnDestroy {
         this.pageLoaded = true;
       }
     }
-    let weatherSub = this.weatherService.getWeather().subscribe(observer);
+    let weatherSub = this.weatherService.getWeather(this.units).subscribe(observer);
     this.subs.push(weatherSub);
+  }
+
+  changeValue(value: string){
+    if (value == 'F') {
+      this.units = 'imperial';
+    } else {
+      this.units = 'metric'
+    }
+    this.getWeather();
   }
 
   ngOnDestroy(): void {

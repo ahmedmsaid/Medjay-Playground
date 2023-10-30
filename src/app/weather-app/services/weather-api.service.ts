@@ -11,7 +11,7 @@ export class WeatherAPIService {
   
   constructor(private http: HttpClient) { }
 
-  getWeather(city: string = this.city) {
-    return this.http.get(`${environment.apiUrl}?q=${city}&appid=${environment.apiKey}&units=${this.units}`)
+  getWeather(unit: string, city: string = this.city) {
+    return this.http.get(`${environment.apiUrl}?q=${city}&appid=${environment.apiKey}&units=${unit}`)
   }
 }

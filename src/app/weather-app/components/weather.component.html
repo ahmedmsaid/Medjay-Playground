@@ -7,14 +7,20 @@
   <div class="card">
     <div class="head">
       <h3>City: {{ weather.name }}</h3>
-      <img [src]="imgUrl" alt="Weather Icon"/>
+      <img [src]="imgUrl" alt="Weather Icon" />
     </div>
     <div class="body">
       <p>Summary: {{ weather.weather[0].main }}</p>
-      <p>Temperature: {{ weather.main.temp }}°C</p>
-      <p>Feels Like: {{ weather.main.feels_like }}°C</p>
+      <p>Temperature: {{ weather.main.temp }}°{{units == 'imperial' ? 'F' : 'C'}}</p>
+      <p>Feels Like: {{ weather.main.feels_like }}°{{units == 'imperial' ? 'F' : 'C'}}</p>
       <p>Pressure: {{ weather.main.pressure }}hPa</p>
       <p>Humidity: {{ weather.main.humidity }}%</p>
+    </div>
+    <div class="footer">
+      <form class="form">
+        <label> <input type="radio" #btnF (change)="changeValue(btnF.value)" name="radioBtn" value="F" [checked]="units == 'imperial' ? true : false" />Fahernheit </label>
+        <label> <input type="radio" #btnC (change)="changeValue(btnC.value)" name="radioBtn" value="C" [checked]="units == 'metric' ? true : false"/>Celsius</label>
+      </form>
     </div>
   </div>
 </diV>
